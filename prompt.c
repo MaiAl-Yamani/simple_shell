@@ -6,5 +6,5 @@
  */
 void display_prompt(void)
 {
-	out_print("simple_shell# ");
+	out_print("#cisfun$ ");
 }
