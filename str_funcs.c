@@ -1,5 +1,22 @@
 #include "shell.h"
 /**
+ * _strlen - return the length of a string
+ * @s: pinter to char s
+ *
+ * Description: returns the length of a string
+ * Return: string length
+ */
+int _strlen(const char *s)
+{
+	int i = 0;
+
+	for (; *s != '\0'; s++)
+	{
+		i++;
+	}
+	return (i);
+}
+/**
  * _strcat - concatinate two string variables
  * @src: the first string variable pointer to src
  * @dest: the second string variable pointer to dest
@@ -75,6 +92,7 @@ char *_strdup(const char *str)
 size_t _strcspn(const char *s1, const char *s2)
 {
 	const char *s_c1, *s_c2;
+
 	for (s_c1 = s1; *s_c1 != '\0'; ++s_c1)
 	{
 		for (s_c2 = s2; *s_c2 != '\0'; ++s_c2)
