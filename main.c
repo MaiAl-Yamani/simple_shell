@@ -6,17 +6,19 @@
  */
 int main(void)
 {
-	char cmd[120];
+	char *cmd = NULL;
+	size_t cmd_size = 0;
 
 	while (true)
 	{
 		display_prompt();
-		read_cmd(cmd, sizeof(cmd));
+		read_cmd(&cmd, &cmd_size);
 		if (is_empty_or_whitespace(cmd))
 			continue;
 		if (strcmp(cmd, "exit") == 0)
 			break;
 		execute_cmd(cmd);
 	}
+	free(cmd);
 	return (0);
 }

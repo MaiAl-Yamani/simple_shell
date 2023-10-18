@@ -6,9 +6,12 @@
  *
  * Return: void
  */
-void read_cmd(char *cmd, size_t size)
+void read_cmd(char **cmd, size_t *size)
 {
-	if (fgets(cmd, size, stdin) == NULL)
+	ssize_t r;
+
+	r = getline(cmd, size, stdin);
+	if (r == -1)
 	{
 		if (feof(stdin))
 		{
@@ -17,11 +20,11 @@ void read_cmd(char *cmd, size_t size)
 		}
 		else
 		{
-			out_print("Error in reading from stdin\n");
+			out_print("Error in reading\n");
 			exit(EXIT_FAILURE);
 		}
 	}
-	cmd[strcspn(cmd, "\n")] = '\0';
+	(*cmd)[_strcspn(*cmd, "\n")] = '\0';
 }
 /**
  * is_empty_or_whitespace - checks if the command is empty or whitespace

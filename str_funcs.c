@@ -65,3 +65,23 @@ char *_strdup(const char *str)
 		res[len] = *--str;
 	return (res);
 }
+/**
+ * _strcspn - scans the string for first ocurrance of reject
+ * @s1: 1st string
+ * @s2: 2nd string
+ *
+ * Return: length of first segment of s1 consisting of bytes not in s2
+ */
+size_t _strcspn(const char *s1, const char *s2)
+{
+	const char *s_c1, *s_c2;
+	for (s_c1 = s1; *s_c1 != '\0'; ++s_c1)
+	{
+		for (s_c2 = s2; *s_c2 != '\0'; ++s_c2)
+		{
+			if (*s_c1 == *s_c2)
+				return (s_c1 - s1);
+		}
+	}
+	return (s_c1 - s1);
+}
