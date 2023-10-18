@@ -12,6 +12,8 @@ int main(void)
 	{
 		display_prompt();
 		read_cmd(cmd, sizeof(cmd));
+		if (is_empty_or_whitespace(cmd))
+			continue;
 		if (strcmp(cmd, "exit") == 0)
 			break;
 		execute_cmd(cmd);

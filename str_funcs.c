@@ -43,3 +43,25 @@ int _strcmp(char *s1, char *s2)
 
 	return (out);
 }
+/**
+ * _strdup - duplicates a string
+ * @str: string to be duplicated
+ *
+ * Return: pointer to the result string
+ */
+char *_strdup(const char *str)
+{
+	int len = 0;
+	char *res;
+
+	if (str == NULL)
+		return (NULL);
+	while (*str++)
+		len++;
+	res = malloc(sizeof(char) * (len + 1));
+	if (!res)
+		return (NULL);
+	for (len++; len--;)
+		res[len] = *--str;
+	return (res);
+}

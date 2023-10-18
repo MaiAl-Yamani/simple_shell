@@ -12,9 +12,11 @@
 
 char *_strcat(char *dest, char *src);
 int _strcmp(char *s1, char *s2);
+char *_strdup(const char *str);
 void display_prompt(void);
 void out_print(const char *msg);
 void read_cmd(char *cmd, size_t size);
+int is_empty_or_whitespace(const char *cmd);
 void execute_cmd(const char *cmd);
 
 #endif

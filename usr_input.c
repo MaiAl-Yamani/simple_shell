@@ -23,3 +23,20 @@ void read_cmd(char *cmd, size_t size)
 	}
 	cmd[strcspn(cmd, "\n")] = '\0';
 }
+/**
+ * is_empty_or_whitespace - checks if the command is empty or whitespace
+ * @cmd: command input
+ *
+ * Return: 1 if empty or whitespace, 0 otherwise
+ */
+int is_empty_or_whitespace(const char *cmd)
+{
+	int i;
+
+	for (i = 0; cmd[i] != '\0'; i++)
+	{
+		if ((cmd[i] != '\n') && (cmd[i] != ' ') && (cmd[i] != '\t'))
+			return (false);
+	}
+	return (true);
+}
