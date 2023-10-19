@@ -44,6 +44,11 @@ int main(int argc, char *argv[])
 				break;
 			}
 		}
+		if (cmd != NULL)
+		{
+			free(cmd);
+			cmd = NULL;
+		}
 	}
 	if (file != NULL)
 	{
