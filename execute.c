@@ -25,7 +25,7 @@ void execute_cmd(const char *cmd)
 		token = strtok_r(NULL, " \t\n", &saveptr2);
 	}
 	args[arg_cnt++] = NULL;
-	if (strcmp(args[0], "exit") == 0)
+	if (_strcmp(args[0], "exit") == 0)
 	{
 		int status = 0;
 
@@ -35,7 +35,7 @@ void execute_cmd(const char *cmd)
 		}
 		exit(status);
 	}
-	if (strcmp(args[0], "env") == 0)
+	if (_strcmp(args[0], "env") == 0)
 	{
 		print_env();
 		return;
