@@ -27,9 +27,10 @@ int main(int argc, char *argv[])
 	}
 	while (true)
 	{
-		display_prompt();
-		/*printf("%s \n", cmd);*/
-		/*printf("%ld \n", cmd_size);*/
+		if (isatty(STDIN_FILENO))
+		{
+			display_prompt();
+		}
 		read_cmd(file, &cmd, &cmd_size);
 		if (is_empty_or_whitespace(cmd))
 			continue;
