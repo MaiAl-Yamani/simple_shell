@@ -1,12 +1,32 @@
 #include "shell.h"
 /**
- * read_cmd - reads command inputs from stdin
+ * read_cmd - reads commands
+ * @cmd: command input
+ * @size: size of string array
+ *
+ * Return: void
+ */
+void read_cmd(FILE* file, char **cmd, size_t *size)
+{
+	if (isatty(STDIN_FILENO))
+	{
+		/* interactive mode */
+		read_from_keyboard(cmd, size);
+	}
+	else
+	{
+		/* non-interactive mode */
+		read_from_file(file, cmd, size);
+	}
+}
+/**
+ * read_from_keyboard - reads command inputs from keyboard
  * @cmd: command input
  * @size: size of the string array
  *
  * Return: void
  */
-void read_cmd(char **cmd, size_t *size)
+void read_from_keyboard(char **cmd, size_t *size)
 {
 	ssize_t r;
 
@@ -20,11 +40,32 @@ void read_cmd(char **cmd, size_t *size)
 		}
 		else
 		{
-			out_print("Error in reading\n");
+			out_print("Error in reading from keyboard\n");
 			exit(EXIT_FAILURE);
 		}
 	}
 	(*cmd)[_strcspn(*cmd, "\n")] = '\0';
+}
+void read_from_file(FILE* file, char **cmd, size_t *size)
+{
+	ssize_t r;
+
+	/*out_print("inside read_from_file\n");*/
+	r = getline(cmd, size, file);
+	if (r == -1)
+	{
+		if (feof(file))
+		{
+			out_print("\n");
+			exit(EXIT_SUCCESS);
+		}
+		else
+		{
+			out_print("Error in reading from file\n");
+			exit(EXIT_FAILURE);
+		}
+	}
+	(*cmd)[strcspn(*cmd, "\n")] = '\0';
 }
 /**
  * is_empty_or_whitespace - checks if the command is empty or whitespace
