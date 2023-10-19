@@ -26,7 +26,15 @@ void execute_cmd(const char *cmd)
 	}
 	args[arg_cnt++] = NULL;
 	if (strcmp(args[0], "exit") == 0)
-		exit(0);
+	{
+		int status = 0;
+
+		if (args[1] != NULL)
+		{
+			status = atoi(args[1]);
+		}
+		exit(status);
+	}
 	if (strcmp(args[0], "env") == 0)
 	{
 		print_env();
