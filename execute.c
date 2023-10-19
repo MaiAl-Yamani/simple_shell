@@ -27,7 +27,11 @@ void execute_cmd(const char *cmd)
 	args[arg_cnt++] = NULL;
 	if (strcmp(args[0], "exit") == 0)
 		exit(0);
-
+	if (strcmp(args[0], "env") == 0)
+	{
+		print_env();
+		return;
+	}
 	if (path_str != NULL)
 	{
 		token_path = strtok_r(path_strcpy, ":", &saveptr);

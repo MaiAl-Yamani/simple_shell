@@ -29,6 +29,9 @@ void read_from_keyboard(char **cmd, size_t *size);
 void read_from_file(FILE *file, char **cmd, size_t *size);
 int is_empty_or_whitespace(const char *cmd);
 
+/* env.c module */
+void print_env(void);
+
 /* execute.c module */
 void execute_cmd(const char *cmd);
 
