@@ -15,14 +15,14 @@ void execute_cmd(const char *cmd)
 	char *path_strcpy = _strdup(path_str);
 	char *token_path = NULL;
 	char *cmd_copy = _strdup(cmd);
-	char *token = strtok_r((char *)cmd_copy, " ", &saveptr2);
+	char *token = strtok_r((char *)cmd_copy, " \t\n", &saveptr2);
 	extern char **environ;
 	pid_t child_pid;
 
 	while (token != NULL)
 	{
 		args[arg_cnt++] = token;
-		token = strtok_r(NULL, " ", &saveptr2);
+		token = strtok_r(NULL, " \t\n", &saveptr2);
 	}
 	args[arg_cnt++] = NULL;
 	if (strcmp(args[0], "exit") == 0)

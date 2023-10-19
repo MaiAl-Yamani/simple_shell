@@ -65,7 +65,7 @@ void read_from_file(FILE *file, char **cmd, size_t *size)
 	{
 		if (feof(file))
 		{
-			out_print("\n");
+			/*out_print("\n");*/
 			exit(EXIT_SUCCESS);
 		}
 		else

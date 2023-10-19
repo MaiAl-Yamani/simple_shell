@@ -39,7 +39,10 @@ int main(int argc, char *argv[])
 		execute_cmd(cmd);
 		if (!isatty(STDIN_FILENO))
 		{
-			break;
+			if (feof(file))
+			{
+				break;
+			}
 		}
 	}
 	if (file != NULL)
