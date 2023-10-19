@@ -1,12 +1,13 @@
 #include "shell.h"
 /**
  * read_cmd - reads commands
+ * @file: file of type FILE that the cmd is read from
  * @cmd: command input
  * @size: size of string array
  *
  * Return: void
  */
-void read_cmd(FILE* file, char **cmd, size_t *size)
+void read_cmd(FILE *file, char **cmd, size_t *size)
 {
 	if (isatty(STDIN_FILENO))
 	{
@@ -46,7 +47,15 @@ void read_from_keyboard(char **cmd, size_t *size)
 	}
 	(*cmd)[_strcspn(*cmd, "\n")] = '\0';
 }
-void read_from_file(FILE* file, char **cmd, size_t *size)
+/**
+ * read_from_file - reads command from file in non-interactive
+ * @file: file to read from
+ * @cmd: command input
+ * @size: size of command array
+ *
+ * Return: void
+ */
+void read_from_file(FILE *file, char **cmd, size_t *size)
 {
 	ssize_t r;
 

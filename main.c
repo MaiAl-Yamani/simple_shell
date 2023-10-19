@@ -9,7 +9,7 @@
 int main(int argc, char *argv[])
 {
 	char *cmd = NULL;
-	FILE* file = NULL;
+	FILE *file = NULL;
 	size_t cmd_size = 0;
 
 	if (argc > 1)
