@@ -119,6 +119,9 @@ int is_command(info_t *, char *);
 char *dup_ch(char *, int, int);
 char *find_path(info_t *, char *, char *);
 
+/* loop */
+int loophsh(char **);
+
 /* str_funcs.c module */
 int _strlen(const char *s);
 char *_strcat(char *dest, char *src);
