@@ -1,59 +1,43 @@
 #include "shell.h"
 /**
- * main - runs the program
- * @argc: number of arguments
- * @argv: arguments array
+ * main - main function (run program)
+ * @argc: command arguments count
+ * @argv: command argument vector array
  *
- * Return: always 0 (success)
+ * Return: 0 on success, 1 on error
  */
-int main(int argc, char *argv[])
+int main(int argc, char **argv)
 {
-	char *cmd = NULL;
-	FILE *file = NULL;
-	size_t cmd_size = 0;
+	info_t info[] = { INFO_INIT };
+	int fd = 2;
 
-	if (argc > 1)
+	asm ("mov %1, %0\n\t"
+		"add $3, %0"
+		: "=r" (fd)
+		: "r" (fd));
+
+	if (argc == 2)
 	{
-		file = fopen(argv[1], "r");
-		if (file == NULL)
+		fd = open(argv[1], O_RDONLY);
+		if (fd == -1)
 		{
-			perror("Error opening file");
+			if (errno == EACCES)
+				exit(126);
+			if (errno == ENOENT)
+			{
+				_errputs(argv[0]);
+				_errputs(": 0: Can't open ");
+				_errputs(argv[1]);
+				_err_putchar('\n');
+				_err_putchar(BUF_FLUSH);
+				exit(127);
+			}
 			return (EXIT_FAILURE);
 		}
+		info->rd_fd = fd;
 	}
-	else
-	{
-		file = stdin;
-	}
-	while (true)
-	{
-		if (isatty(STDIN_FILENO))
-		{
-			display_prompt();
-		}
-		read_cmd(file, &cmd, &cmd_size);
-		if (is_empty_or_whitespace(cmd))
-			continue;
-		if (strcmp(cmd, "exit") == 0)
-			break;
-		execute_cmd(cmd);
-		if (!isatty(STDIN_FILENO))
-		{
-			if (feof(file))
-			{
-				break;
-			}
-		}
-		if (cmd != NULL)
-		{
-			free(cmd);
-			cmd = NULL;
-		}
-	}
-	if (file != NULL)
-	{
-		fclose(file);
-	}
-	free(cmd);
-	return (0);
+	populate_env_ll(info);
+	read_hist(info);
+	hsh_func(info, argv);
+	return (EXIT_SUCCESS);
 }
