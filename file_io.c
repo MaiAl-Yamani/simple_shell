@@ -12,7 +12,6 @@ char *get_hist(info_t *info)
 	dirrec = _getenv(info, "HOME=");
 	if (!dirrec)
 		return (NULL);
-
 	buffer = malloc(sizeof(char) * (_strlen(dirrec) + _strlen(HIST_F) + 2));
 	if (!buffer)
 		return (NULL);
@@ -61,7 +60,7 @@ int read_hist(info_t *info)
 
 	ssize_t fd, read_len, fsize = 0;
 	char *buffer = NULL, *fname = get_hist(info);
-	int lst, i, linecnt = 0;
+	int lst = 0, i, linecnt = 0;
 	struct stat st;
 
 	if (!fname)

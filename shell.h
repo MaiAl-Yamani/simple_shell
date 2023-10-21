@@ -122,12 +122,11 @@ char *find_path(info_t *, char *, char *);
 /* loop */
 int loophsh(char **);
 
-/* str_funcs.c module */
-int _strlen(const char *s);
-char *_strcat(char *dest, char *src);
-int _strcmp(char *s1, char *s2);
-char *_strdup(const char *str);
-size_t _strcspn(const char *s1, const char *s2);
+/* err_funcs.c module */
+void _errputs(char *);
+int _err_putchar(char);
+int _putfd(char c, int fd);
+int _putsfd(char *s, int fd);
 
 /* str_funcs2.c module */
 int _putchar(char ch);
@@ -135,11 +134,12 @@ void _puts(char *str);
 char *start_with(const char *haystack, const char *needle);
 char *_strcpy(char *dest, char *src);
 
-/* mem_funcs.c module */
-char *_memset(char *s_ptr, char byte, unsigned int n);
-void *_realloc(void *, unsigned int, unsigned int);
-void ffree(char **);
-int bfree(void **);
+/* str_funcs.c module */
+int _strlen(const char *s);
+char *_strcat(char *dest, char *src);
+int _strcmp(char *s1, char *s2);
+char *_strdup(const char *str);
+size_t _strcspn(const char *s1, const char *s2);
 
 /* str_funcs3.c */
 char **strtow(char *, char *);
@@ -148,11 +148,11 @@ char *_strncat(char *, char *, int);
 char *_strncpy(char *, char *, int);
 char *_strchr(char *, char);
 
-/* err_funcs.c module */
-void _errputs(char *);
-int _err_putchar(char);
-int _putfd(char c, int fd);
-int _putsfd(char *s, int fd);
+/* mem_funcs.c module */
+char *_memset(char *s_ptr, char byte, unsigned int n);
+void *_realloc(void *, unsigned int, unsigned int);
+void ffree(char **);
+int bfree(void **);
 
 /* helper_funcs.c module */
 int is_interactive(info_t *);
@@ -199,6 +199,13 @@ char **get_environ(info_t *);
 int _unsetenv(info_t *, char *);
 int _setenv(info_t *, char *, char *);
 
+/* file_io.c module */
+char *get_hist(info_t *info);
+int write_hist(info_t *info);
+int read_hist(info_t *info);
+int build_hist_list(info_t *info, char *buffer, int linecnt);
+int re_number_hist(info_t *info);
+
 /* list_str.c module */
 list_t *add_node(list_t **, const char *, int);
 list_t *add_node_end(list_t **, const char *, int);
@@ -212,13 +219,6 @@ char **list_to_str(list_t *);
 size_t print_ll(const list_t *);
 list_t *node_start_prefix(list_t *, char *, char);
 ssize_t get_node_idx(list_t *, list_t *);
-
-/* file_io.c module */
-char *get_hist(info_t *info);
-int write_hist(info_t *info);
-int read_hist(info_t *info);
-int build_hist_list(info_t *info, char *buffer, int linecnt);
-int re_number_hist(info_t *info);
 
 /* chain_handle.c */
 int is_chain(info_t *, char *, size_t *);
