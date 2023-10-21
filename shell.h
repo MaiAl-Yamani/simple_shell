@@ -135,6 +135,12 @@ void _puts(char *str);
 char *start_with(const char *haystack, const char *needle);
 char *_strcpy(char *dest, char *src);
 
+/* mem_funcs.c module */
+char *_memset(char *s_ptr, char byte, unsigned int n);
+void *_realloc(void *, unsigned int, unsigned int);
+void ffree(char **);
+int bfree(void **);
+
 /* str_funcs3.c */
 char **strtow(char *, char *);
 char **strtow2(char *, char);
@@ -147,12 +153,6 @@ void _errputs(char *);
 int _err_putchar(char);
 int _putfd(char c, int fd);
 int _putsfd(char *s, int fd);
-
-/* mem_funcs.c module */
-char *_memset(char *s_ptr, char byte, unsigned int n);
-void *_realloc(void *, unsigned int, unsigned int);
-void ffree(char **);
-int bfree(void **);
 
 /* helper_funcs.c module */
 int is_interactive(info_t *);
