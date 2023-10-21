@@ -1,6 +1,6 @@
 #include "shell.h"
 /**
- * _err_ator - converts a string to an integer
+ * _err_atoi - converts a string to an integer
  * @str: string input
  * Return: 0 if no numbers in str, or converted number, -1 on error
  */

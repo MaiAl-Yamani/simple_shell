@@ -99,7 +99,7 @@ typedef struct pass_info
 /**
  * struct builtin - struct for builtin commands
  * @type: command type
- * @function: corresponding function to the command
+ * @func: corresponding function to the command
  */
 typedef struct builtin
 {

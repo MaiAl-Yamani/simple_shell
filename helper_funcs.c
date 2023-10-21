@@ -10,7 +10,7 @@ int is_interactive(info_t *info)
 	return (isatty(STDIN_FILENO) && info->rd_fd <= 2);
 }
 /**
- * is_delim_ch - checks if ch is a delimeter
+ * is_delim - checks if ch is a delimeter
  * @ch: char
  * @delimeter: delimeter string
  * Return: 1 if true, 0 if false

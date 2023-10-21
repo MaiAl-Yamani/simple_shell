@@ -1,6 +1,6 @@
 #include "shell.h"
 /**
- * print_env - prints env
+ * _hsh_env - prints env
  * @info: info_t structure
  *
  * Return: Always 0
